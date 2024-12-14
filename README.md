@@ -1,31 +1,42 @@
-OMDB Movie Search and Favourites App
+# OMDB Movie Search and Favourites App
+
 This is a Node.js application that allows users to search for movies and TV shows via the OMDB API, save their favourite movies to a MySQL database, and view the list of saved favourites on a separate page.
 
-Features
-Search: Users can search for movies/TV shows using the OMDB API.
-Favourite: Users can save movies to a favourites list.
-View Favourites: Users can view their saved favourites from the database.
-Responsive Design: The app is designed to work across different screen sizes.
-Technologies Used
-Backend: Node.js, Express.js
-Frontend: HTML, CSS, JavaScript
-Database: MySQL
-API: OMDB API (https://www.omdbapi.com/)
-Other Libraries: Axios, Body-Parser, CORS
-Getting Started
+## Features
+
+- **Search**: Users can search for movies/TV shows using the OMDB API.
+- **Favourite**: Users can save movies to a favourites list.
+- **View Favourites**: Users can view their saved favourites from the database.
+- **Responsive Design**: The app is designed to work across different screen sizes.
+
+## Technologies Used
+
+- **Backend**: Node.js, Express.js
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: MySQL
+- **API**: OMDB API (https://www.omdbapi.com/)
+- **Other Libraries**: Axios, Body-Parser, CORS
+
+---
+
+## Getting Started
+
 Follow the instructions below to get the application up and running on your local machine.
 
-Prerequisites
-Node.js: Download Node.js
-MySQL: Download MySQL
-OMDB API Key: You will need an API key from OMDB. You can get it by signing up at OMDB API.
-Installation
-Clone the repository:
+### Prerequisites
 
-bash
-Copy code
-git clone https://github.com/yourusername/omdb-movie-search-app.git
-cd omdb-movie-search-app
+- **Node.js**: [Download Node.js](https://nodejs.org/)
+- **MySQL**: [Download MySQL](https://dev.mysql.com/downloads/installer/)
+- **OMDB API Key**: You will need an API key from OMDB. You can get it by signing up at [OMDB API](https://www.omdbapi.com/apikey.aspx).
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/omdb-movie-search-app.git
+   cd omdb-movie-search-app
+
+
 Install dependencies:
 
 bash
