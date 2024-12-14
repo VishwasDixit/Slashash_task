@@ -37,23 +37,22 @@ Follow the instructions below to get the application up and running on your loca
    cd omdb-movie-search-app
 
 
-Install dependencies:
+## Install dependencies:
 
-bash
-Copy code
-npm install
-Set up MySQL database:
+- bash
+- npm install
 
-Create a new database called omdb_favourites:
+### Set up MySQL database:
+- Create a new database called omdb_favourites:
 
-sql
-Copy code
-CREATE DATABASE omdb_favourites;
-Create a table for storing favourites:
+- sql
 
-sql
-Copy code
-CREATE TABLE favourites (
+- CREATE DATABASE omdb_favourites;
+- Create a table for storing favourites:
+
+- sql
+
+- CREATE TABLE favourites (
   id INT AUTO_INCREMENT PRIMARY KEY,
   omdb_id VARCHAR(255) NOT NULL UNIQUE,
   title VARCHAR(255) NOT NULL,
@@ -61,24 +60,28 @@ CREATE TABLE favourites (
   type VARCHAR(50),
   poster TEXT
 );
-Configure your MySQL connection:
 
-Open the index.js file and replace the following values with your MySQL credentials:
+
+### Configure your MySQL connection:
+
+- Open the index.js file and replace the following values with your MySQL credentials:
 js
-Copy code
-const db = mysql.createConnection({
+
+- const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'yourpassword', // Replace with your MySQL password
   database: 'omdb_favourites'
 });
-Obtain your OMDB API Key:
+
+
+### Obtain your OMDB API Key:
 
 Sign up at OMDB API and get an API key.
 Replace 7b276fd4 with your OMDB API key in index.js.
 Running the Application
 Start the server:
 
-bash
-Copy code
-node index.js
+- bash
+
+- node index.js
