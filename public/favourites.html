@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favourites</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file here -->
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="search.html" class="nav-link">Search Movies</a>
+    </nav>
+    <h1>Your Favourite Movies</h1>
+  </header>
+
+  <main>
+    <div id="favourites-list" class="movie-list">
+      <!-- Favourite movies will be dynamically inserted here -->
+    </div>
+  </main>
+
+  <script>
+    // Fetch all favourites from the server
+    fetch('/favourites')
+      .then(response => response.json())
+      .then(data => {
+        const favouritesList = document.getElementById('favourites-list');
+
+        if (data.length === 0) {
+          favouritesList.innerHTML = '<p>No favourites added yet!</p>';
+          return;
+        }
+
+        // Create cards for each favourite movie
+        data.forEach(movie => {
+          const movieCard = document.createElement('div');
+          movieCard.className = 'movie-card';
+
+          movieCard.innerHTML = `
+            <img src="${movie.poster !== 'N/A' ? movie.poster : 'placeholder.jpg'}" alt="${movie.title}" class="movie-poster">
+            <div class="movie-info">
+              <h3>${movie.title}</h3>
+              <p>Year: ${movie.year}</p>
+              <p>Type: ${movie.type}</p>
+            </div>
+          `;
+
+          favouritesList.appendChild(movieCard);
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching favourites:', err);
+        document.getElementById('favourites-list').innerHTML = '<p>Error loading favourites. Please try again later.</p>';
+      });
+  </script>
+</body>
+</html>

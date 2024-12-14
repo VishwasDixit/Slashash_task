@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .movie-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .movie-item {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+    }
+    .movie-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <script>
+    async function searchMovies() {
+      const query = document.getElementById('searchQuery').value;
+
+      // Fetch movies from API
+      const response = await fetch(`http://localhost:3000/search?query=${query}`);
+      const movies = await response.json();
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ''; // Clear previous results
+
+      // Display each movie/series
+      movies.forEach(movie => {
+        const movieDiv = document.createElement('div');
+        movieDiv.classList.add('movie-item');
+
+        const poster = movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/200x300?text=No+Image";
+
+        movieDiv.innerHTML = `
+          <img src="${poster}" alt="${movie.Title}" />
+          <h3>${movie.Title}</h3>
+          <p>${movie.Year} | ${movie.Type}</p>
+          <button onclick="addFavourite('${movie.imdbID}', '${movie.Title}', '${movie.Year}', '${movie.Type}', '${poster}')">
+            Add to Favourites
+          </button>
+        `;
+        resultsDiv.appendChild(movieDiv);
+      });
+    }
+
+    async function addFavourite(omdb_id, title, year, type, poster) {
+      // Send favourite movie details to backend
+      await fetch('http://localhost:3000/favourites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ omdb_id, title, year, type, poster })
+      });
+
+      alert(`${title} added to favourites!`);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../favourites.html" class="nav-link">View Favourites</a>
+    </nav>
+  </header>
+  
+  <h1>Search Movies or TV Shows</h1>
+  <input type="text" id="searchQuery" placeholder="Enter movie or series name" />
+  <button onclick="searchMovies()">Search</button>
+  
+  <h2>Results:</h2>
+  <div id="results" class="movie-list"></div>
+</body>
+</html>
